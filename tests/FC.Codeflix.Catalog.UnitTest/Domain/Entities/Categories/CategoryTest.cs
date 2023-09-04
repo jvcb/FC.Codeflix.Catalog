@@ -123,4 +123,38 @@ public class CategoryTest
 
         Assert.Equal("Description should be greater than 10000 characters long", exception.Message);
     }
+
+    [Fact(DisplayName = nameof(Activate))]
+    [Trait("Domain", "Category - Entity")]
+    public void Activate()
+    {
+        var validData = new
+        {
+            Name = "Category Name",
+            Description = "Category Description",
+        };
+
+        var category = new Category(validData.Name, validData.Description, false);
+
+        category.Activate();
+
+        Assert.True(category.IsActive);
+    }
+
+    [Fact(DisplayName = nameof(Deactivate))]
+    [Trait("Domain", "Category - Entity")]
+    public void Deactivate()
+    {
+        var validData = new
+        {
+            Name = "Category Name",
+            Description = "Category Description",
+        };
+
+        var category = new Category(validData.Name, validData.Description);
+
+        category.Deactivate();
+
+        Assert.False(category.IsActive);
+    }
 }
