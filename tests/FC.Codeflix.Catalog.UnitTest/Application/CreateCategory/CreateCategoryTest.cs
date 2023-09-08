@@ -1,5 +1,8 @@
-﻿using FC.Codeflix.Catalog.Domain.Entities;
+﻿using FC.Codeflix.Catalog.Application.Interfaces;
+using FC.Codeflix.Catalog.Application.UseCases.Categories.CreateCategory;
+using FC.Codeflix.Catalog.Domain.Entities;
 using FC.Codeflix.Catalog.Domain.Repositories;
+using FluentAssertions;
 using Moq;
 
 namespace FC.Codeflix.Catalog.UnitTest.Application.CreateCategory;
@@ -33,9 +36,9 @@ public class CreateCategoryTest
             Times.Once);
 
         output.Should().NotBeNull();
-        output.Id.Should().NotBe(Guid.Empty);
+        output.Id.Should().NotBeEmpty();
         output.Name.Should().Be("Category Name");
-        output.Description.Should().Be("Category Name");
+        output.Description.Should().Be("Category Description");
         output.IsActive.Should().BeTrue();
         output.CreatedAt.Should().NotBeSameDateAs(DateTime.MinValue);
     }
