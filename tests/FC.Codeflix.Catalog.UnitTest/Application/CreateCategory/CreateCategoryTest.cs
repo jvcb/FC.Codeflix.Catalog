@@ -1,4 +1,5 @@
 ﻿using FC.Codeflix.Catalog.Domain.Entities;
+using FC.Codeflix.Catalog.Domain.Repositories;
 using Moq;
 
 namespace FC.Codeflix.Catalog.UnitTest.Application.CreateCategory;
@@ -24,7 +25,7 @@ public class CreateCategoryTest
         var output = await useCase.Handle(input, CancellationToken.None);
 
         repositoryMock.Verify(repository => 
-            repository.Create(It.IsAny<Category>, CancellationToken.None), 
+            repository.Insert(It.IsAny<Category>(), CancellationToken.None), 
             Times.Once);
 
         unitOfWorkMock.Verify(
