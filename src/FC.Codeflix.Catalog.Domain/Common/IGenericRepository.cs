@@ -1,6 +1,7 @@
 ﻿namespace FC.Codeflix.Catalog.Domain.Common;
 
-public interface IGenericRepository<TAggregate> : IRepository
-{
-    public Task Insert(TAggregate category, CancellationToken cancellationToken);
+public interface IGenericRepository<TAggregate, TPrimaryKey> : IRepository
+{ 
+    public Task Insert(TAggregate aggregate, CancellationToken cancellationToken);
+    public Task<TAggregate> Get(TPrimaryKey id, CancellationToken cancellationToken);
 }
